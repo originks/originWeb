@@ -4,8 +4,10 @@ module.exports = {
       alias: {
         'src': '@',
         'assets': '@/assets',
-        'components': '@/components'
+        'components': '@/components',
+        'views': '@/views'
       }
-    }
+    },
+    devtool: 'source-map'
   }
 }
