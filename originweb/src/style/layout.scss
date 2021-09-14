@@ -1,3 +1,43 @@
-
-
-  
+// collapse
+#app {
+  .closeBar {
+    .sideBar {
+      width: 64px !important;
+      .el-menu--collapse > .sideItem .el-menu-item [class^='el-icon-'],
+      .el-menu--collapse
+        > .sideItem
+        .el-submenu
+        > .el-submenu__title
+        [class^='el-icon-'] {
+        margin: 0;
+        vertical-align: middle;
+        width: 24px;
+        text-align: center;
+      }
+      .el-menu--collapse > .sideItem .el-menu-item span,
+      .el-menu--collapse > .sideItem .el-submenu > .el-submenu__title span {
+        height: 0;
+        width: 0;
+        overflow: hidden;
+        visibility: hidden;
+        display: inline-block;
+      }
+      .el-menu--collapse > .sideItem .el-menu-item .el-submenu__icon-arrow,
+      .el-menu--collapse
+        > .sideItem
+        .el-submenu
+        > .el-submenu__title
+        .el-submenu__icon-arrow {
+        display: none;
+      }
+    }
+    .header_l {
+      width: 64px !important;
+      overflow: hidden;
+    }
+    .header_r,
+    .pageMain {
+      margin-left: 64px;
+    }
+  }
+}

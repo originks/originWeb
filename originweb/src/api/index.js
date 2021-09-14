@@ -1,5 +1,9 @@
 import axios from "axios"
+import {
+  Loading
+} from "element-ui"
 import Qs from 'qs'
+import Vue from "vue"
 
 const $axios = axios.create({
   timeout: 30000,
@@ -8,12 +12,38 @@ const $axios = axios.create({
 
 Vue.prototype.$http = axios
 
+// 添加请求和响应过程中的界面状态
+let loading = null;
+
+// 请求拦截器
+$axios.interceptors.request.use(function (config) {
+  loading = Loading.service({
+    text: '拼命加载中...'
+  })
+  return config
+})
+
+// 响应拦截器
+$axios.interceptors.response.use(function (response) {
+  if (loading) {
+    loading.close();
+  }
+  return response.data
+})
+
 export default {
   post(url, data) {
     return $axios({
       method: "post",
       url,
       data: Qs.stringify(data),
+    })
+  },
+  get(url, params) {
+    return $axios({
+      method: 'get',
+      url,
+      params
     })
   }
 }

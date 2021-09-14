@@ -53,11 +53,16 @@
 
     </el-row>
     <!-- cardList end -->
-
+    <line-charts :lineChartData="lineChartData"></line-charts>
   </div>
 </template>
 <script>
   import CountTo from 'vue-count-to'
+  import LineCharts from './components/LineCharts'
+  import {
+    getCardsData,
+    getLineData
+  } from "@/api/origintab.js"
   export default {
     data() {
       return {
@@ -71,15 +76,21 @@
         barData: {}
       }
     },
+    components: {
+      CountTo,
+      LineCharts
+    },
     created() {
       this._getAllData()
     },
-    components: {
-      CountTo
-    },
     methods: {
       _getAllData() {
-        console.log(1);
+        this.$http.all([getCardsData(), getLineData()]).then(this.$http.spread((cardData, lineData) => {
+          this.vistors = cardData.data.vistors
+          this.message = cardData.data.message
+          this.order = cardData.data.order
+          this.profit = cardData.data.profit
+        }))
       }
     },
   }

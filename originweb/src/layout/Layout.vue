@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" :class="{closeBar:opened}">
     <m-header></m-header>
     <transition enter-active-class="animated bounceInLeft" leave-active-class="animated bounceOutRight">
       <notificat-bar v-show="msgIsShow"></notificat-bar>
@@ -30,11 +30,11 @@
       PageMain,
     },
     computed: {
-      ...mapGetters(["msgIsShow"])
+      ...mapGetters(["msgIsShow", "opened"])
     },
   }
 </script>
-<style>
+<style lang="scss">
   .wrapper {
     position: relative;
     width: 100%;
@@ -46,4 +46,5 @@
     height: calc(100% - 50px);
     padding-top: 50px;
   }
+
 </style>
