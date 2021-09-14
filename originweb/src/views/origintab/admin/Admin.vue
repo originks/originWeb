@@ -53,15 +53,27 @@
 
     </el-row>
     <!-- cardList end -->
-    <line-charts :lineChartData="lineChartData"></line-charts>
+    <line-charts class="lCharts" :lineChartData="lineChartData"></line-charts>
+    <el-row class="tableChart">
+      <el-col :span=16>
+        <table-show :tableData="tableData"></table-show>
+      </el-col>
+      <el-col :span=8>
+        <pie-charts class="pieCharts"></pie-charts>
+      </el-col>
+    </el-row>
   </div>
 </template>
 <script>
   import CountTo from 'vue-count-to'
   import LineCharts from './components/LineCharts'
+  import TableShow from './components/TableShow'
+  import PieCharts from './components/PieCharts'
   import {
     getCardsData,
-    getLineData
+    getLineData,
+    getTableData,
+    getBarData
   } from "@/api/origintab.js"
   export default {
     data() {
@@ -78,26 +90,36 @@
     },
     components: {
       CountTo,
-      LineCharts
+      LineCharts,
+      TableShow,
+      PieCharts
     },
     created() {
       this._getAllData()
     },
     methods: {
       _getAllData() {
-        this.$http.all([getCardsData(), getLineData()]).then(this.$http.spread((cardData, lineData) => {
+        this.$http.all([getCardsData(), getLineData(), getTableData(), getBarData()]).then(this.$http.spread((cardData,
+          lineData, tabData, barData) => {
           this.vistors = cardData.data.vistors
           this.message = cardData.data.message
           this.order = cardData.data.order
           this.profit = cardData.data.profit
+          this.lineChartData = lineData.data
+          this.tableData = tabData.data.tableList
+          this.barData = barData.data
         }))
       }
     },
   }
 </script>
 <style lang="scss">
-  .infoCards .el-col {
-    padding: 0 20px;
+  .infoCards {
+    margin: 0 -20px;
+
+    .el-col {
+      padding: 0 20px;
+    }
   }
 
   .cardItem {
@@ -144,5 +166,20 @@
     i {
       font-size: 55px;
     }
+  }
+
+  .lCharts {
+    margin-top: 30px;
+    padding: 30px 0px;
+    background-color: #fff;
+  }
+
+  .tableChart {
+    margin-top: 20px;
+  }
+
+  .pieCharts {
+    background: #FFF;
+    padding: 20px 0px;
   }
 </style>
