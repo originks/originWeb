@@ -62,6 +62,7 @@
         <pie-charts class="pieCharts"></pie-charts>
       </el-col>
     </el-row>
+    <bar-charts :barData="barData" class="barData"></bar-charts>
   </div>
 </template>
 <script>
@@ -69,11 +70,12 @@
   import LineCharts from './components/LineCharts'
   import TableShow from './components/TableShow'
   import PieCharts from './components/PieCharts'
+  import BarCharts from './components/BarCharts'
   import {
     getCardsData,
     getLineData,
     getTableData,
-    getBarData
+    getBarData,
   } from "@/api/origintab.js"
   export default {
     data() {
@@ -92,7 +94,8 @@
       CountTo,
       LineCharts,
       TableShow,
-      PieCharts
+      PieCharts,
+      BarCharts
     },
     created() {
       this._getAllData()
@@ -180,6 +183,11 @@
 
   .pieCharts {
     background: #FFF;
+    padding: 20px 0px;
+  }
+  .barData{
+    background-color: #fff;
+    margin-top: 20px;
     padding: 20px 0px;
   }
 </style>

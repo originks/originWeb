@@ -55,7 +55,13 @@
             left: "16"
           },
           tooltip: {
-
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross',
+              label: {
+                background: '#6a7985'
+              }
+            }
           },
           legend: {
             data: ['收入', '支出']

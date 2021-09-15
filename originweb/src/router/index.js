@@ -6,9 +6,18 @@ Vue.use(VueRouter)
 import Layout from "@/layout/Layout"
 const OriginTab = () => import('views/origintab/OriginTab')
 const Test = () => import('views/test/Test')
+const Login = () => import('views/login/Login')
 
 
 export const routes = [{
+  path: '/login',
+  name: 'Login',
+  component: Login,
+  meta: {
+    title: '登录页'
+  },
+  hidden: true
+}, {
   path: '/',
   component: Layout,
   name: "Home",
@@ -22,12 +31,12 @@ export const routes = [{
       icon: "el-icon-s-data"
     }
   }]
-},{
+}, {
   path: '/test',
   component: Layout,
   name: "Home",
   redirect: '/test/main',
-  children: [ {
+  children: [{
     path: "main",
     component: Test,
     meta: {
