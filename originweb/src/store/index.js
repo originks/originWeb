@@ -1,12 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import user from './modules/user'
+
 Vue.use(Vuex)
 
 // 引入router，用于菜单栏
 import {
   routes
 } from "@/router"
+import {
+  Message
+} from 'element-ui'
 
 export default new Vuex.Store({
   state: {
@@ -39,6 +44,7 @@ export default new Vuex.Store({
       state.msgIsShow = !state.msgIsShow
     }
   },
-  actions: {},
-  modules: {}
+  modules: {
+    user
+  }
 })
