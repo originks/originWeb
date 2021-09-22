@@ -1,10 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '@/store'
 
 Vue.use(VueRouter)
 
 import Layout from "@/layout/Layout"
 import getTitle from '@/utils/getTitle'
+import {
+  Message
+} from 'element-ui'
 const OriginTab = () => import('views/origintab/OriginTab')
 const Test = () => import('views/test/Test')
 const Login = () => import('views/login/Login')
@@ -45,7 +49,7 @@ export const routes = [{
       icon: "el-icon-circle-plus-outline"
     }
   }]
-}]
+  }]
 
 const router = new VueRouter({
   routes,
@@ -53,14 +57,37 @@ const router = new VueRouter({
 })
 
 
-//导航守卫
-router.beforeEach((to, from, next) => {
-  document.title = getTitle(to.meta.title)
-  if (to.path === '/login') {
-    next()
-  } else {
-    
-  }
-})
+// 导航守卫
+// router.beforeEach(async (to, from, next) => {
+//   document.title = getTitle(to.meta.title)
+//   if (to.path === '/login') {
+//     next()
+//   } else {
+//     debugger
+//     if (store.getters.token) {
+//       const hasRoles = store.getters.roles.length > 0
+//       if (hasRoles) {
+//         next()
+//       } else {
+//         try {
+//           const { roles } = await store.dispatch('user/_getInfo')
+//           // const addRoutes = await store.dispatch('permissison/getAsyncRoutes', roles)
+//           next({...to,replace:true})
+          
+//         }catch (error) {
+//           Message.error(error)
+//         }
+//       }
+//     } else {
+//       next({
+//         path: '/login',
+//         query: {
+//           redirect:to.fullPath
+//         }
+//       })
+//     }
+  
+//   }
+// })
 
 export default router

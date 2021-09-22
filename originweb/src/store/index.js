@@ -6,9 +6,7 @@ import user from './modules/user'
 Vue.use(Vuex)
 
 // 引入router，用于菜单栏
-import {
-  routes
-} from "@/router"
+import {routes} from "@/router"
 import {
   Message
 } from 'element-ui'
@@ -17,7 +15,6 @@ export default new Vuex.Store({
   state: {
     opened: sessionStorage.getItem('open') ? sessionStorage.getItem('open') : "false",
     msgIsShow: false,
-    userName: "admin",
     routes: routes,
   },
   getters: {
@@ -29,8 +26,10 @@ export default new Vuex.Store({
       }
     },
     msgIsShow: state => state.msgIsShow,
-    userName: state => state.userName,
+    userName: state => state.user.userName,
     routes: state => state.routes,
+    token: state => state.user.token,
+    roles:state=>state.user.roles
   },
   mutations: {
     SET_OPENED(state, payload) {

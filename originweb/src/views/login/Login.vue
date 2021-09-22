@@ -29,7 +29,7 @@
       return {
         ruleForm: {
           user: 'admin',
-          password: 123456
+          password: '123456'
         },
         rules: {
           user: [{
@@ -56,11 +56,10 @@
       loginYz(form) {
         this.$refs[form].validate(valid => {
           if (valid) {
-            console.log("success");
             this.$store.dispatch('user/_login', this.ruleForm)
               .then(res => {
                 if (res.data.success) {
-                  console.log(this.$route);
+                  // this.$router.push(this.$route.query.redirect)
                   this.$router.push(this.$route.query.redirect)
                 }
               })
