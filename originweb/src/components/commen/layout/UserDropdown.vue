@@ -13,7 +13,7 @@
           <router-link to="/"><i class="el-icon-s-custom"></i>我的主页</router-link>
         </el-dropdown-item>
         <el-dropdown-item>
-          <router-link to="/"><i class="el-icon-switch-button"></i>登出</router-link>
+          <a @click="_loginOut"><i class="el-icon-switch-button"></i>登出</a>
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -26,6 +26,11 @@
   export default {
     computed: {
       ...mapGetters(['userName'])
+    },
+    methods:{
+      _loginOut(){
+        this.$store.dispatch('user/loginOut')
+      }
     }
   }
 </script>

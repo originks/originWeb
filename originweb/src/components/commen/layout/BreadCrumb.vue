@@ -21,6 +21,9 @@
               return true
             }
           })
+          if(allList[0].path!=='/'&&allList[0].path!=='/origintab'){
+            allList.unshift({path:'/',meta:{title:'首页'}})
+          }
           this.breadList = allList
         },
         immediate: true

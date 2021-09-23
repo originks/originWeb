@@ -12,6 +12,8 @@ import {
 const OriginTab = () => import('views/origintab/OriginTab')
 const Test = () => import('views/test/Test')
 const Login = () => import('views/login/Login')
+const BaseTable = () => import('views/table/commonTable')
+const complexTable = () => import('views/table/complexTable')
 
 
 export const currencyRoutes = [{
@@ -49,7 +51,31 @@ export const currencyRoutes = [{
       icon: "el-icon-circle-plus-outline"
     }
   }]
+  }, {
+  path: '/table',
+  component: Layout,
+  name: 'Table',
+  redirect:'/table/base-table',
+  meta: {
+    title: 'Table',
+    icon:'el-icon-table iconfont'
+  },
+  children: [{
+    path: 'base-table',
+    name: 'BaseTable',
+    component: BaseTable,
+    meta: {
+      title:'普通表格'
+    }
+  },{
+    path: 'complex-table',
+    name: 'complexTable',
+    component: complexTable,
+    meta: {
+      title:'复杂表格'
+    }
   }]
+}]
 
 const router = new VueRouter({
   routes: currencyRoutes,
@@ -59,11 +85,11 @@ const router = new VueRouter({
 
 // 导航守卫
 router.beforeEach(async (to, from, next) => {
+  debugger
   document.title = getTitle(to.meta.title)
   if (to.path === '/login') {
     next()
   } else {
-    debugger
     if (store.getters.token) {
       const hasRoles = store.getters.roles.length > 0
       if (hasRoles) {
@@ -80,10 +106,11 @@ router.beforeEach(async (to, from, next) => {
         }
       }
     } else {
+      console.log('to:',to);
       next({
         path: '/login',
         query: {
-          redirect:to.fullPath
+          redirect:to.fullPath//保存此次参数，登录后，直接跳转到此界面
         }
       })
     }

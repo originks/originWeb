@@ -25,6 +25,13 @@ const mutations = {
   },
   SET_INTRODUCE(state, payload) {
     state.introduce=payload
+  },
+  DEL_TOKEN(state) {
+    state.token = ''
+    state.userName = ''
+    state.roles = ''
+    state.introduce = ''
+    localStorage.removeItem('token')
   }
 }
 
@@ -43,6 +50,16 @@ const actions = {
         resolve(res)
       })
       
+    })
+  },
+
+  loginOut({ commit}) {
+    commit('DEL_TOKEN')
+    router.push({
+    path: '/login',
+    query: {
+        redirect:'/'
+      }
     })
   },
   

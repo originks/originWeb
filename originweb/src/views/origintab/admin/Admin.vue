@@ -2,7 +2,7 @@
   <div class="origintab">
     <!-- cardList -->
     <el-row class="infoCards">
-      <el-col :span=6>
+      <el-col :xl=6  :sm=12>
         <div class="cardItem">
           <div class="cardItem_txt">
             <count-to class="cardItem_p0 color-green1" :startVal="startVal" :endVal="vistors" :duration="2000">
@@ -14,7 +14,7 @@
           </div>
         </div>
       </el-col>
-      <el-col :span=6>
+      <el-col :xl=6 :sm=12>
         <div class="cardItem">
           <div class="cardItem_txt">
             <count-to class="cardItem_p0 color-blue" :startVal="startVal" :endVal="message" :duration="2000">
@@ -26,7 +26,7 @@
           </div>
         </div>
       </el-col>
-      <el-col :span=6>
+      <el-col :xl=6 :sm=12>
         <div class="cardItem">
           <div class="cardItem_txt">
             <count-to class="cardItem_p0 color-red" :startVal="startVal" :endVal="order" :duration="2000">
@@ -38,7 +38,7 @@
           </div>
         </div>
       </el-col>
-      <el-col :span=6>
+      <el-col :xl=6 :sm=12>
         <div class="cardItem">
           <div class="cardItem_txt">
             <count-to class="cardItem_p0 color-green2" :startVal="startVal" :endVal="profit" :duration="2000">
