@@ -60,7 +60,7 @@
               .then(res => {
                 if (res.data.success) {
                   // this.$router.push(this.$route.query.redirect)
-                  this.$router.push(this.$route.query.redirect)
+                  this.$router.push('/')
                 }
               })
               

@@ -5,7 +5,7 @@ import {
 } from 'element-ui'
 
 const state = {
-  token: localStorage.getItem('token') ? localStorage.getItem('item') : '',
+  token: localStorage.getItem('token') ? localStorage.getItem('token') : '',
   roles: [],
   userName:'admin',
   introduce: '',

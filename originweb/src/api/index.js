@@ -4,6 +4,7 @@ import {
 } from "element-ui"
 import Qs from 'qs'
 import Vue from "vue"
+import store from '@/store'
 
 const $axios = axios.create({
   timeout: 30000,
@@ -20,6 +21,10 @@ $axios.interceptors.request.use(function (config) {
   loading = Loading.service({
     text: '拼命加载中...'
   })
+  // const token = store.getters.token
+  // if (token) {
+  //   config.headers.Authorization = token // 请求头部添加token
+  // }
   return config
 })
 

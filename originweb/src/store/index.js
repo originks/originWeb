@@ -2,11 +2,11 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import user from './modules/user'
+import permission from './modules/permission'
 
 Vue.use(Vuex)
 
-// 引入router，用于菜单栏
-import {routes} from "@/router"
+
 import {
   Message
 } from 'element-ui'
@@ -15,7 +15,6 @@ export default new Vuex.Store({
   state: {
     opened: sessionStorage.getItem('open') ? sessionStorage.getItem('open') : "false",
     msgIsShow: false,
-    routes: routes,
   },
   getters: {
     opened: state => {
@@ -27,7 +26,7 @@ export default new Vuex.Store({
     },
     msgIsShow: state => state.msgIsShow,
     userName: state => state.user.userName,
-    routes: state => state.routes,
+    routes: state => state.permission.routes,
     token: state => state.user.token,
     roles:state=>state.user.roles
   },
@@ -38,12 +37,10 @@ export default new Vuex.Store({
     },
     SET_MSGISOPEN(state) {
       state.msgIsShow = !state.msgIsShow
-    },
-    SET_MSGISOPEN(state) {
-      state.msgIsShow = !state.msgIsShow
     }
   },
   modules: {
-    user
+    user,
+    permission
   }
 })
