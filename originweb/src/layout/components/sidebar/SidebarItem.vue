@@ -6,7 +6,7 @@
         <span slot="title">{{item.children[0].meta.title}}</span>
       </el-menu-item>
     </template>
-    <el-submenu v-else >
+    <el-submenu v-else :index="basePath">
       <template slot="title">
         <i :class="item.meta.icon?item.meta.icon:''"></i>
         <span>{{item.meta.title}}</span>

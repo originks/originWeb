@@ -4,6 +4,14 @@
       active-text-color="rgb(79, 148, 212)" mode="vertical" :collapse-transition="false" :collapse="opened">
       <sidebar-item v-for="item in routes" :key="item.path" :item="item" :basePath="item.path">
       </sidebar-item>
+      <el-menu-item>
+        <template slot="title">
+          <div @click="toGitee">
+            <i class="el-icon-link"></i>
+            <span>项目链接</span>
+          </div>
+        </template>
+      </el-menu-item>
     </el-menu>
   </div>
 </template>
@@ -21,7 +29,12 @@
         return this.$route.path
       },
       ...mapGetters(['routes', 'opened'])
-    }
+    },
+    methods: {
+      toGitee() {
+        window.open("https://gitee.com/originks/origin-web.git")
+      }
+    },
   }
 </script>
 

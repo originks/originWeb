@@ -85,7 +85,6 @@ const router = new VueRouter({
 
 // 导航守卫
 router.beforeEach(async (to, from, next) => {
-  debugger
   document.title = getTitle(to.meta.title)
   if (to.path === '/login') {
     next()
