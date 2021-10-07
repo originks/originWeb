@@ -12,7 +12,7 @@
 </script>
 <style lang="scss">
   .pageMain {
-    /* height: 100%; */
+    height: 100%;
     margin-left: 200px;
 
     &>div {

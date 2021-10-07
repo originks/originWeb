@@ -47,39 +47,50 @@ export const currencyRoutes = [{
     path: "main",
     component: Test,
     meta: {
-      title: "更多",
+      title: "测试",
       icon: "el-icon-circle-plus-outline"
     }
   }]
-  }, {
+}, {
   path: '/table',
   component: Layout,
   name: 'Table',
-  redirect:'/table/base-table',
+  redirect: '/table/base-table',
   meta: {
     title: 'Table',
-    icon:'el-icon-table iconfont'
+    icon: 'el-icon-table iconfont'
   },
   children: [{
     path: 'base-table',
     name: 'BaseTable',
     component: BaseTable,
     meta: {
-      title:'普通表格'
+      title: '普通表格'
     }
-  },{
+  }, {
     path: 'complex-table',
     name: 'complexTable',
     component: complexTable,
     meta: {
-      title:'复杂表格'
+      title: '复杂表格'
     }
   }]
-}]
+}, {
+  path: '*',
+  component: Layout,
+  children: [{
+    path: "*",
+    component: () => import('@/views/404'),
+    meta: {
+      title: "404",
+      icon:'el-icon-loading'
+    }
+  }]
+}, ]
 
 const router = new VueRouter({
   routes: currencyRoutes,
-  mode:'history'
+  mode: 'history'
 })
 
 
@@ -95,25 +106,30 @@ router.beforeEach(async (to, from, next) => {
         next()
       } else {
         try {
-          const { roles } = await store.dispatch('user/_getInfo')
+          const {
+            roles
+          } = await store.dispatch('user/_getInfo')
           const addRoutes = await store.dispatch('permission/getAsyncRoutes', roles)
           // next()
-          next({ ...to, replace: true })
-          
-        }catch (error) {
+          next({
+            ...to,
+            replace: true
+          })
+
+        } catch (error) {
           Message.error(error)
         }
       }
     } else {
-      console.log('to:',to);
+      console.log('to:', to);
       next({
         path: '/login',
         query: {
-          redirect:to.fullPath//保存此次参数，登录后，直接跳转到此界面
+          redirect: to.fullPath //保存此次参数，登录后，直接跳转到此界面
         }
       })
     }
-  
+
   }
 })
 
