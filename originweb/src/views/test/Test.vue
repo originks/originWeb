@@ -7,13 +7,22 @@
     <apis></apis>
     <!-- form表单 -->
     <forms class="forms"></forms>
+    <!-- 插件测试 -->
+    <plugins-component></plugins-component>
+    <!-- 接口模拟测试 -->
+    <api-mock-test></api-mock-test>
   </div>
 </template>
 <script>
   import child1 from './components/child1'
   import Forms from './form'
   import Apis from './apis'
+  import mixins from '@/mixins/mixinsTest'
+  import '@/plugins/pluginsTest.js'
+  import ApiMockTest from './apiMock'
+
   export default {
+    mixins: [mixins], //混入测试
     data() {
       return {
         name: 'James'
@@ -27,11 +36,13 @@
     components: {
       child1,
       Forms,
-      Apis
+      Apis,
+      ApiMockTest
     },
     methods: {
       showRefs() {
         alert(this.$refs.dad.name)
+        this.hello()
       }
     },
   }

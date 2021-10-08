@@ -19,3 +19,8 @@ export function getBarData() {
   const url = '/getBarData'
   return $axios.get(url)
 }
+
+export function getMockTestPlay() {
+  const url = '/players'
+  return $axios.get(url)
+}
